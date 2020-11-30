@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+ minecraft:
+   image: itzg/minecraft-server
+   ports:
+     - "25565:25565"
+   restart: always
+   environment:
+     EULA: "TRUE"
+     SEED: "2151901553968352745"
+     OPS: "metcalfc"
+     MOTD: "Hi AWS Folks"
+     MEMORY: 12G
+   deploy:
+     resources:
+       limits:
+         cpus: "1"
+         memory: 12G
+   volumes:
+     - "minecraft:/data"
+volumes:
+ minecraft:
+   driver_opts:
+     # Filesystem configuration
+     backup_policy: ENABLED
+     lifecycle_policy: AFTER_14_DAYS
+     performance_mode: maxIO
+     throughput_mode: provisioned
+     provisioned_throughput: 1024

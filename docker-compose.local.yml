@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+ minecraft:
+   image: itzg/minecraft-server
+   ports:
+     - "25565:25565"
+   restart: always
+   environment:
+     EULA: "TRUE"
+     MOTD: "Welcome to BigBox."
+     SEED: "2151901553968352745"
+     MEMORY: 4G
+   volumes:
+     - "minecraft:/data"
+volumes:
+ minecraft:
